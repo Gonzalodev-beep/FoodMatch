@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoodMatch | Encuentra el lugar perfecto para comer</title>
+<meta name="description" content="FoodMatch recomienda restaurantes según tu gusto y tu bolsillo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+ <div class="wrap bar">
+  <a class="logo" href="#inicio">Food<span>Match</span></a>
+  <button id="burger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav id="menu" aria-label="Principal">
+   <ul>
+    <li><a href="#inicio">Buscar</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#favoritos">Favoritos</a></li>
+    <li><a href="#pedido" class="cart-link">Mi pedido<b id="cartCount">0</b></a></li>
+    <li><a href="#negocio">Pagos y envíos</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
+
+<main>
+<div class="hero" id="inicio">
+ <div class="wrap">
+  <h1>Come bien sin pasarte de tu presupuesto.</h1>
+  <p class="lead">Dinos cuánto quieres gastar, qué se te antoja y dónde estás. FoodMatch te muestra solo lo que encaja.</p>
+  <span class="badge">Prototipo en San Juan de Miraflores · datos demostrativos</span>
+ </div>
+</div>
+
+<div class="wrap">
+ <form class="matcher" id="filtros" aria-label="Filtros de búsqueda" onsubmit="return false">
+  <div class="field">
+   <label for="presupuesto">Presupuesto por persona</label>
+   <div class="money" id="presupuestoVal">S/ 25</div>
+   <input type="range" id="presupuesto" min="8" max="100" step="1" value="25">
+  </div>
+  <div class="field">
+   <label for="tipo">Tipo de comida</label>
+   <select id="tipo">
+    <option value="todas">Cualquiera</option><option>Criolla</option><option>Pollos y parrillas</option><option>Marina</option><option>Chifa</option><option>Pizza y pasta</option><option>Rápida</option><option>Saludable</option>
+   </select>
+  </div>
+  <div class="field">
+   <label for="ocasion">Ocasión</label>
+   <select id="ocasion">
+    <option value="todas">Cualquiera</option><option value="solo">Comer solo</option><option value="amigos">Con amigos</option><option value="cita">Cita</option><option value="familia">Familia</option>
+   </select>
+  </div>
+  <div class="field">
+   <label for="calif">Calificación mínima</label>
+   <select id="calif"><option value="0">Todas</option><option value="3.5">3.5 ★ o más</option><option value="4">4.0 ★ o más</option><option value="4.5">4.5 ★ o más</option></select>
+  </div>
+  <div class="field">
+   <span class="label" style="display:block;font-weight:700;font-size:.92rem;margin-bottom:6px">Modalidad</span>
+   <div class="seg" id="modo">
+    <button type="button" data-v="todas" aria-pressed="true">Ambas</button>
+    <button type="button" data-v="delivery" aria-pressed="false">Delivery</button>
+    <button type="button" data-v="local" aria-pressed="false">En local</button>
+   </div>
+  </div>
+  <div class="field">
+   <label for="orden">Ordenar por</label>
+   <select id="orden"><option value="match">Mejor coincidencia</option><option value="precio">Menor precio</option><option value="dist">Más cerca</option><option value="calif">Mejor calificación</option></select>
+  </div>
+  <div class="loc">
+   <button type="button" class="btn sec" id="btnGeo">📍 Usar mi ubicación</button>
+   <span id="locTxt">Ubicación de referencia: centro de San Juan de Miraflores.</span>
+  </div>
+ </form>
+</div>
+
+<section id="resultados">
+ <div class="wrap">
+  <h2>Tus coincidencias</h2>
+  <p class="sub" id="resumen" aria-live="polite"></p>
+  <div class="grid" id="lista"></div>
+  <p class="note">Restaurantes, precios y calificaciones ficticios, creados solo para demostrar el prototipo. El % de coincidencia mide qué tanto encaja cada local con tus filtros.</p>
+ </div>
+</section>
+
+<section id="favoritos" class="alt">
+ <div class="wrap">
+  <h2>Tus favoritos</h2>
+  <p class="sub">Guarda locales con el corazón para decidir después. Se mantienen en este dispositivo.</p>
+  <div class="grid" id="favLista"></div>
+ </div>
+</section>
+
+<section id="pedido">
+ <div class="wrap">
+  <h2>Mi pedido</h2>
+  <p class="sub">Sin cargos ocultos: ves comida, delivery e impuestos antes de pagar.</p>
+  <div class="checkout">
+   <div class="panel" id="carritoPanel"></div>
+   <div class="panel" id="pagoPanel"></div>
+  </div>
+ </div>
+</section>
+
+<section id="negocio" class="alt">
+ <div class="wrap">
+  <h2>Cómo funciona el negocio</h2>
+  <p class="sub">Modelo marketplace B2C con derivación de pedidos a restaurantes aliados y comisión por orden confirmada (dropshipping de afiliados).</p>
+  <div class="cols">
+   <article class="info"><h3>Yape</h3><p>Pago inmediato por QR o celular. Ideal para pedidos de S/ 15 a S/ 25.</p></article>
+   <article class="info"><h3>Plin</h3><p>Cubre a quienes no usan Yape y sube la conversión.</p></article>
+   <article class="info"><h3>Visa · Niubiz</h3><p>Tarjetas con SSL, PCI DSS y antifraude Cybersource.</p></article>
+   <article class="info"><h3>Culqi</h3><p>Más marcas de tarjeta y activación rápida para el MVP.</p></article>
+   <article class="info"><h3>Rappi Envíos</h3><p>Entrega inmediata para restaurantes sin reparto propio.</p></article>
+   <article class="info"><h3>Chazki</h3><p>Última milla con API, trazabilidad y devoluciones por reclamos.</p></article>
+  </div>
+  <h3 style="margin:36px 0 8px">Tácticas de mobile marketing implementadas</h3>
+  <div class="cols">
+   <article class="info"><h3>WhatsApp Business</h3><p>Botón flotante verde con mensaje predeterminado.</p></article>
+   <article class="info"><h3>Geolocalización</h3><p>Distancia y costo de envío calculados desde tu ubicación (con permiso).</p></article>
+   <article class="info"><h3>Compartir y QR móvil</h3><p>Comparte un local con tus amigos desde el menú nativo del celular.</p></article>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <strong>FoodMatch</strong> · Encuentra el lugar perfecto para comer, según tu gusto y tu bolsillo.
+  <p style="margin-top:10px">Proyecto Integrador PA2 · Diseño de Negocios Digitales · ISIL 2026-2</p>
+ </div>
+</footer>
+
+<a id="wa" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
+<div id="toast" role="status"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
